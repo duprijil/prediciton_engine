@@ -17,8 +17,8 @@ class LoanPrediction {
     {
         db = new dbAPI(db_file_path, db_table_name);
         il = new InputLayer(5, 10);
-        hll = new HiddenLayer(10, 10);
-        hl = new HiddenLayer(10, 3);
+        hll = new HiddenLayer(10, 8);
+        hl = new HiddenLayer(8, 3);
         ol = new OutputLayer(3, 3);
     }
     LoanPrediction() {
@@ -56,7 +56,7 @@ class LoanPrediction {
         else if(result == 1) return 'B';
         return 'C';
     }
-    void makeTrain(unsigned int train_count = 2000) {
+    void makeTrain(unsigned int train_count = 3000) {
         unsigned int correct_response = 0, current_response = 0;
         int correct_count = 0;
         int tmp = 0;
@@ -74,10 +74,10 @@ class LoanPrediction {
             }
             else {
                 tmp = ol->back_propagation(hl->neurons, hl->nr_of_neurons ,correct_response, out_errors);
-                if(tmp == 0) {
+                //if(tmp == 0) {
                 hl->back_propagation(hll->neurons, hll->nr_of_neurons, out_errors, hl_errors);
                 hll->back_propagation(il->neurons, il->nr_of_neurons, hl_errors, hll_errors);
-                }
+                //}
             }
             memset(out_errors, 0, sizeof(double) * hl->nr_of_neurons);
             memset(hl_errors, 0, sizeof(double) * hll->nr_of_neurons);
@@ -186,7 +186,7 @@ int main() {
     srand(time(nullptr));
     LoanPrediction* lp = new LoanPrediction("db/prediction_data.db","train_data");
     lp->makeTrain();
-    //lp->saveWeights("weights.dima");
+    lp->saveWeights("weights.dima");
     //lp->loadWeights("weights.dima");
     test(lp);
     delete lp;
