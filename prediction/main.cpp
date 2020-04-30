@@ -178,7 +178,6 @@ extern "C" {
     char LoanPrediction_predict(LoanPrediction* lp, double annual_inc, double funded_amnt, double funded_amnt_inv, double installment, double int_rate) {
         return lp->predictLoan( annual_inc,  funded_amnt,  funded_amnt_inv,  installment,  int_rate);
     }
-    //void LoanPrediction_delete(LoanPrediction* lp) { delete lp; }
 }
 
 
@@ -186,13 +185,11 @@ extern "C" {
 int main() {
     srand(time(nullptr));
     LoanPrediction* lp = new LoanPrediction("db/prediction_data.db","train_data");
-    //lp->makeTrain();
+    lp->makeTrain();
     //lp->saveWeights("weights.dima");
-    lp->loadWeights("weights.dima");
+    //lp->loadWeights("weights.dima");
     test(lp);
-    //printf("before error\n");
     delete lp;
-    //printf("after error\n");
     return 0;
 }
 

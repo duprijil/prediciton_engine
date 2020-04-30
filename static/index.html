@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Forecasting system by Prijilevschi Dumitru</title>
+        <script src="scripts.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="icon" href="data:;base64,=">
+    </head>
+    <body>
+        <div class="main">
+            <h1>Prediction system</h1> <br/>
+
+            <label for="annual_inc">Anual income: </label>
+            <input type = "text" id="annual_inc" value="80000"/> <br/> <br/>
+
+            <label for="funded_amnt">Funded amount: </label>
+            <input type = "text" id="funded_amnt" value="19000"/> <br/> <br/>
+
+            <label for="installment">Installment: </label>
+            <input type = "text" id="installment" value="602.52"/> <br/> <br/>
+
+            <label for="int_rate">Interest Rate on the loan: </label>
+            <input type = "text" id="int_rate" value="8.81"/> <br/> <br/>
+            
+            <button onclick="httpGetPrediction()">Predict</button> <br/>
+            <p id="result_name"></p>
+            <p id="result"></p>
+        </div>
+    </body>
+</html>
