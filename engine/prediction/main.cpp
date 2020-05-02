@@ -17,8 +17,8 @@ class LoanPrediction {
     {
         db = new dbAPI(db_file_path, db_table_name);
         il = new InputLayer(5, 10);
-        hll = new HiddenLayer(10, 8);
-        hl = new HiddenLayer(8, 3);
+        hll = new HiddenLayer(10, 10);
+        hl = new HiddenLayer(10, 3);
         ol = new OutputLayer(3, 3);
     }
     LoanPrediction() {
@@ -115,6 +115,10 @@ class LoanPrediction {
     }
     void loadWeights(const char* filename) {
         FILE* f = fopen(filename, "r");
+        if(f == NULL) {
+            printf("file doesent exists");
+            return;
+        }
         for(size_t i = 0; i < il->nr_of_neurons; i++) {
             for(size_t j = 0; j < il->neurons[0]->nr_of_weights; j++) {
                 fscanf(f, "%lf", &il->neurons[i]->weights[j]);
@@ -181,7 +185,7 @@ extern "C" {
 }
 
 
-
+/*
 int main() {
     srand(time(nullptr));
     LoanPrediction* lp = new LoanPrediction("db/prediction_data.db","train_data");
@@ -192,4 +196,4 @@ int main() {
     delete lp;
     return 0;
 }
-
+*/

@@ -1,9 +1,10 @@
 import ctypes
 from flask import Flask, request
 import json
-
-_dll = ctypes.CDLL('libengine.so')
+_dll = ctypes.CDLL('/app/engine/libengine.so')
+print('Hello')
 engine = _dll.LoanPrediction_new()
+print('HHeelloo')
 _dll.LoanPrediction_loadWeights(engine)
 
 app = Flask(__name__, static_url_path='/static')
