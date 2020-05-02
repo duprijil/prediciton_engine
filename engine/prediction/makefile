@@ -4,7 +4,7 @@ compile:
 	g++ -I. -o app *.cpp *.hpp sqlite3.a -Wall
 
 dll:
-	g++ -I. -o app *.cpp *.hpp sqlite3.a -Wall -fPIC -shared -o ../libengine.so
+	g++ -std=c++11 -I. *.cpp *.hpp -lsqlite3 -Wall -fPIC -shared -o ../libengine.so
 
 run:
 	app
